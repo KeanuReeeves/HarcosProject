@@ -38,11 +38,36 @@ namespace HarcosProject
         public int AlapHp {get => alapHp;}
         public int AlapDMG { get => alapDMG;}
         public int Sebzes { get => alapDMG + szint;}
-        public int SzintLepeshez { get => (10 + szint * 5) - xp;}
+        public int SzintLepeshez { get => (10 + szint * 5);}
         public int MaxHp { get => alapHp + szint * 3;}
         public override string ToString()
         {
-            return ;
+            string s = string.Format("{0}\tLVL:{6}\tEXP:{1}/{2}\tHP:{3}/{4}\tDMG:{5}",Nev,Xp,SzintLepeshez,Hp,MaxHp,Sebzes,Szint);
+            return s;
+        }
+        public void Megkuzd(Harcos a, Harcos b)
+        {
+            if (a.Nev == b.Nev)
+            {
+                Console.WriteLine("Egy harcos sem harcol magával!");
+            }
+            else if (a.Hp == 0 || b.Hp == 0)
+            {
+                Console.WriteLine("Egyik harcosnak sem lehet a HP-ja 0!!!");
+            }
+            else 
+            {
+                b.hp -= a.Sebzes;
+                if (b.hp>0)
+                {
+                    a.Xp += 5;
+                    b.Xp += 5;
+                }
+                else
+                {
+                    a.Xp += 10;
+                }
+            }
         }
 
     }
