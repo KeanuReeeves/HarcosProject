@@ -31,9 +31,45 @@ namespace HarcosProject
         }
 
         public string Nev { get => nev; set => nev = value; }
-        public int Szint { get => szint; set => szint = value; }
-        public int Xp { get => xp; set => xp = value; }
-        public int Hp { get => hp; set => hp = value; }
+        public int Szint { get => szint;
+            set 
+            {
+                if ()
+                {
+
+                }
+            } 
+        }
+        public int Xp { get => xp;
+            set 
+            {
+                if (value>SzintLepeshez)
+                {
+                    Szint++;
+                    this.xp=value-SzintLepeshez;
+                }
+
+            } 
+        }
+        public int Hp { get => hp;
+            set 
+            {
+                if (value==0)
+                {
+                    Xp = 0;
+                }
+                if (value > MaxHp)
+                {
+                    value = MaxHp;
+                }
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                hp = value;
+                
+            } }
 
         public int AlapHp {get => alapHp;}
         public int AlapDMG { get => alapDMG;}
@@ -57,7 +93,7 @@ namespace HarcosProject
             }
             else 
             {
-                b.hp -= a.Sebzes;
+                b.Hp -= a.Sebzes;
                 if (b.hp>0)
                 {
                     a.Xp += 5;
@@ -67,6 +103,17 @@ namespace HarcosProject
                 {
                     a.Xp += 10;
                 }
+            }
+        }
+        public void Gyogyul()
+        {
+            if (this.hp == 0)
+            {
+                hp = MaxHp;
+            }
+            else
+            {
+                hp += 3 + szint;
             }
         }
 
