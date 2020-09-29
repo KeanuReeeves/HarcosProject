@@ -34,10 +34,11 @@ namespace HarcosProject
         public int Szint { get => szint;
             set 
             {
-                if ()
+                if (value>szint+1)
                 {
-
+                    value = szint;
                 }
+                szint = value;
             } 
         }
         public int Xp { get => xp;
@@ -47,8 +48,9 @@ namespace HarcosProject
                 {
                     Szint++;
                     this.xp=value-SzintLepeshez;
+                    Hp = MaxHp;
                 }
-
+                xp = value;
             } 
         }
         public int Hp { get => hp;
