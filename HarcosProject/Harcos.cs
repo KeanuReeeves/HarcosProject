@@ -80,7 +80,7 @@ namespace HarcosProject
         public int MaxHp { get => alapHp + szint * 3;}
         public override string ToString()
         {
-            string s = string.Format("{0}\tLVL:{6}\tEXP:{1}/{2}\tHP:{3}/{4}\tDMG:{5}",Nev,Xp,SzintLepeshez,Hp,MaxHp,Sebzes,Szint);
+            string s = string.Format("{0,2}\tLVL:{6}\tEXP:{1}/{2}\tHP:{3}/{4}\tDMG:{5}",Nev,Xp,SzintLepeshez,Hp,MaxHp,Sebzes,Szint);
             return s;
         }
         public void Megkuzd(Harcos a, Harcos b)
