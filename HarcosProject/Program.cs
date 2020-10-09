@@ -11,6 +11,8 @@ namespace HarcosProject
     {
         private static List<Harcos> harcosok = new List<Harcos>();
         private static Harcos h;
+        private static Random r;
+        private static int db=1;
         public void olvas(List<Harcos>h)
         {
             h = new List<Harcos>();
@@ -38,14 +40,73 @@ namespace HarcosProject
             while (s.Split(';').Length!=2);
             
         }
-        private static void Jatek()
+        private static void Menu()
         {
-            Jatekos();
+            
             for (int i = 0; i < harcosok.Count; i++)
             {
-                Console.WriteLine((i+1)+" "+harcosok[i]);
+                Console.WriteLine((i + 1) + " " + harcosok[i]);
             }
-            Console.WriteLine("\n"+h);
+            Console.WriteLine("\n" + h);
+            Console.WriteLine("Menü\n" +
+                              "1.Harc\n" +
+                              "2.Gyógyulás\n" +
+                              "3.Kilépés");
+            ConsoleKey k = Console.ReadKey().Key;
+            
+            
+            do
+            {
+                if (k == ConsoleKey.D1)
+                {
+                    int celpont;
+
+                    Console.WriteLine("Adja meg a megtámadni kívánt harcos sorszámát");
+                    celpont = Convert.ToInt32(Console.ReadLine());
+                    if (celpont <= harcosok.Count)
+                    {
+                        h.Megkuzd(harcosok[celpont - 1]);
+                        Console.Clear();
+                        Menu();
+                        db++;
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Rossz számot adott meg");
+                        Menu();
+                    }
+
+
+
+
+
+                }
+                else if (k == ConsoleKey.D2)
+                {
+                    h.Gyogyul();
+                    Console.Clear();
+                    Menu();
+                    db++;
+                }
+                else
+                {
+                    db++;
+                }
+                if (db%3==0)
+                {
+                    int Random = r.Next(0, harcosok.Count - 1);
+                    harcosok[Random].Megkuzd(h);
+                    foreach (var item in harcosok)
+                    {
+                        item.Gyogyul();
+                    }
+                }
+                
+                
+            }
+            while (k != ConsoleKey.D3);
+            
         }
         static void Main(string[] args)
         {
@@ -53,7 +114,8 @@ namespace HarcosProject
             harcosok.Add(new Harcos("Tök Ödön", 1));
             harcosok.Add(new Harcos("Pisi Misi", 2));
             harcosok.Add(new Harcos("Fütty Imre", 3));
-            Jatek();
+            Jatekos();
+            Menu();
 
             Console.ReadKey();
         }

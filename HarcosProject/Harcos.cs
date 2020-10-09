@@ -83,27 +83,27 @@ namespace HarcosProject
             string s = string.Format("{0,-12}\tLVL:{6,2}\tEXP:{1}/{2}\tHP:{3}/{4}\tDMG:{5,2}",Nev,Xp,SzintLepeshez,Hp,MaxHp,Sebzes,Szint);
             return s;
         }
-        public void Megkuzd(Harcos a, Harcos b)
+        public void Megkuzd(Harcos b)
         {
-            if (a.Nev == b.Nev)
+            if (this.nev == b.Nev)
             {
                 Console.WriteLine("Egy harcos sem harcol magával!");
             }
-            else if (a.Hp == 0 || b.Hp == 0)
+            else if (this.Hp == 0 || b.Hp == 0)
             {
                 Console.WriteLine("Egyik harcosnak sem lehet a HP-ja 0!!!");
             }
             else 
             {
-                b.Hp -= a.Sebzes;
+                b.Hp -= this.Sebzes;
                 if (b.hp>0)
                 {
-                    a.Xp += 5;
+                    this.Xp += 5;
                     b.Xp += 5;
                 }
                 else
                 {
-                    a.Xp += 10;
+                    this.Xp += 10;
                 }
             }
         }
